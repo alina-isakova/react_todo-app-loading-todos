@@ -2,6 +2,8 @@ import React from 'react';
 import { Todo } from '../types/Todo';
 import { Status } from '../types/Status';
 
+import { Filter } from './Filter';
+
 type Props = {
   activeTodos: Todo[];
   filterStatus: Status;
@@ -20,43 +22,7 @@ export const Footer: React.FC<Props> = ({
       {`${activeTodos.length} items left`}
     </span>
 
-    <nav className="filter" data-cy="Filter">
-      <a
-        href="#/"
-        className={`filter__link ${filterStatus === 'all' ? 'selected' : ''}`}
-        data-cy="FilterLinkAll"
-        onClick={e => {
-          e.preventDefault();
-          setFilterStatus(Status.All);
-        }}
-      >
-        All
-      </a>
-
-      <a
-        href="#/active"
-        className={`filter__link ${filterStatus === 'active' ? 'selected' : ''}`}
-        data-cy="FilterLinkActive"
-        onClick={e => {
-          e.preventDefault();
-          setFilterStatus(Status.Active);
-        }}
-      >
-        Active
-      </a>
-
-      <a
-        href="#/completed"
-        className={`filter__link ${filterStatus === 'completed' ? 'selected' : ''}`}
-        data-cy="FilterLinkCompleted"
-        onClick={e => {
-          e.preventDefault();
-          setFilterStatus(Status.Completed);
-        }}
-      >
-        Completed
-      </a>
-    </nav>
+    <Filter filterStatus={filterStatus} setFilterStatus={setFilterStatus} />
 
     <button
       disabled={completedTodos.length === 0}

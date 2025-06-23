@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import React from 'react';
 
 type Props = {
@@ -11,7 +12,9 @@ export const Notification: React.FC<Props> = ({
 }) => (
   <div
     data-cy="ErrorNotification"
-    className={`notification is-danger is-light has-text-weight-normal ${!errorMessage ? 'hidden' : ''}`}
+    className={cn('notification is-danger is-light has-text-weight-normal', {
+      hidden: !errorMessage,
+    })}
   >
     <button
       onClick={() => setErrorMessage('')}
